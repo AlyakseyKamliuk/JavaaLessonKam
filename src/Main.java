@@ -142,13 +142,13 @@ public class Main {
         public static String ageCalculate2(int day, int month, int year){
 
             LocalDate birthday = LocalDate.of(year, month, day);
-            Period vozrast = Period.between(birthday, LocalDate.now());
-            return "Ваш возраст составляет:" + vozrast.getYears() + " лет " + vozrast.getMonths() + " месяцев " + vozrast.getDays() + " дней";
+            Period age = Period.between(birthday, LocalDate.now());
+            return "Ваш возраст составляет:" + age.getYears() + " лет " + age.getMonths() + " месяцев " + age.getDays() + " дней";
 
     }
 
     public static void ageCalculate3(int day, int month, int year) {
-        LocalDate rez = LocalDate.now().minus(Period.of(year, month, day));
-        System.out.println("Ваш возраст составляет:" + rez.getYear() + " лет " + rez.getMonthValue() + " месяцев " + rez.getDayOfMonth() + " дней");
+        LocalDate age = LocalDate.now().minus(Period.of(year, month, day));
+        System.out.println("Ваш возраст составляет:" + age.getYear() + " лет " + age.getMonthValue() + " месяцев " + age.getDayOfMonth() + " дней");
     }
 }
