@@ -30,11 +30,12 @@ public class Main {
         System.out.println("     Задача 9");
         calcOfAreaAndCircum(5);
         System.out.println("     Задача 10");
-        System.out.println(isCircleCoversRectangle(10, -16, -6));
+        System.out.println(isCircleCoversRectangle(10, 10, 15));
         System.out.println("     Задача 11 (три способа)");
-        ageCalculate1(1984, 6, 30);
-        System.out.println(ageCalculate2(30,6,1984));
-        ageCalculate3(7,7,1972);
+        ageCalculate1(2002, 5, 22);
+        System.out.println(ageCalculate2(22,5,2002));
+        ageCalculate3(22,5,2002);
+
 
     }
 
@@ -94,6 +95,8 @@ public class Main {
     }
 
 
+
+
     public static void timeConvert2(Long seconds) {
         Long day = TimeUnit.SECONDS.toDays(seconds);
         Long remainderOfDivision = seconds % 86400;
@@ -125,8 +128,11 @@ public class Main {
     }
 
     public static boolean isCircleCoversRectangle(int length, int width, int radius) {
+
+        if (length<0||width<0||radius<0) {return false;} else {
         double diagonal = Math.sqrt(length * length + width * width);
         return diagonal <= radius * 2;
+        }
     }
 
     public static void ageCalculate1(int year, int month, int day) {
