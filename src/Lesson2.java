@@ -1,7 +1,7 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Lesson2 {
-    public static int dellIndex = 0;
 
     public static void main(String[] args) {
 
@@ -35,7 +35,16 @@ public class Lesson2 {
         System.out.println("Task 11 Пузырьком, как заказывали:)");
         System.out.println(Arrays.toString(sortingArray(array)));
         System.out.println("Task 12");
-        createTwoDimensionalRandomArray(10, 10);
+        prinTwoDimArray(createTwoDimensionalRandomArray(10, 10));
+    }
+
+    public static void prinTwoDimArray(int[][] array)
+    {
+        for (int i = 0; i <array.length ; i++)
+            for (int j = 0; j < array[0].length; j++) {
+                System.out.print(array[i][j]+" ");
+                if (j==array[0].length-1) System.out.println();
+            }
     }
 
     public static Boolean palindrome(String s) {
@@ -47,11 +56,11 @@ public class Lesson2 {
     }
 
     public static int[] randomArray(int numElemets) {
-        int max = 100;
+        int max = 250;
         int min = -100;
         int[] arrays = new int[numElemets];
         for (int i = 0; i < numElemets; i++) {
-            arrays[i] = (int) (Math.random() * ++max) + min;
+            arrays[i] = new Random().nextInt(max) + min;
         }
         return arrays;
     }
@@ -106,6 +115,7 @@ public class Lesson2 {
     }
 
     public static int[] deleteArrayElement(int[] arrays, int deletePosition) {
+        if (deletePosition>arrays.length-1) return arrays;
         int[] arraysRez = new int[arrays.length - 1];
         int j = 0;
         for (int i = 0; i < arrays.length; i++) {
@@ -142,7 +152,7 @@ public class Lesson2 {
 
         int[] arrayResult = new int[array.length];
         for (int i = 0; i < arrayResult.length; i++) {
-            randomIndex = (int) (Math.random() * (array.length));
+            randomIndex = new Random().nextInt(array.length);
             arrayResult[i] = array[randomIndex];
             array = deleteArrayElement(array, randomIndex);
         }
@@ -152,36 +162,39 @@ public class Lesson2 {
 
     public static int[] sortingArray(int[] array) {
         int[] resultArray = new int[array.length];
+        int[] tmp;
         for (int i = 0; i < resultArray.length; i++) {
-            resultArray[i] = minElementArray(array);
-            array = deleteArrayElement(array, dellIndex);
-            dellIndex = 0;
+            tmp=minElementArray(array);
+            resultArray[i] = tmp[0];
+            array = deleteArrayElement(array, tmp[1]);
         }
         return resultArray;
     }
 
-    public static int minElementArray(int[] array) {
+    public static int[] minElementArray(int[] array) {
         int min = array[0];
+        int dellIndex=0;
         for (int i = 0; i < array.length; i++) {
             if (min > array[i]) {
                 min = array[i];
                 dellIndex = i;
             }
         }
-        return min;
+        int[] rezult={min, dellIndex};
+        return rezult;
     }
 
-    public static void createTwoDimensionalRandomArray(int n, int m) {
-        int max = 100;
+    public static int[][] createTwoDimensionalRandomArray(int n, int m) {
+        int max = 200;
         int min = -100;
         int[][] arrays = new int[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                arrays[i][j] = (int) (Math.random() * ++max) + min;
-                System.out.print(arrays[i][j] + " ");
-                if (j == (m - 1)) System.out.println();
+                arrays[i][j] = new Random().nextInt(max) + min;
+
             }
         }
+        return arrays;
     }
 }
 
