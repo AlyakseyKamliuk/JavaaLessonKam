@@ -3,7 +3,10 @@ import java.util.Random;
 
 public class Lesson2 {
 
+    public static final Random random = new Random();
+
     public static void main(String[] args) {
+
 
         System.out.println("Task 1");
         System.out.println(palindrome("asddasdd"));
@@ -60,7 +63,7 @@ public class Lesson2 {
         int min = -100;
         int[] arrays = new int[numElemets];
         for (int i = 0; i < numElemets; i++) {
-            arrays[i] = new Random().nextInt(max) + min;
+            arrays[i] = random.nextInt(max) + min;
         }
         return arrays;
     }
@@ -152,7 +155,7 @@ public class Lesson2 {
 
         int[] arrayResult = new int[array.length];
         for (int i = 0; i < arrayResult.length; i++) {
-            randomIndex = new Random().nextInt(array.length);
+            randomIndex = random.nextInt(array.length);
             arrayResult[i] = array[randomIndex];
             array = deleteArrayElement(array, randomIndex);
         }
@@ -190,7 +193,7 @@ public class Lesson2 {
         int[][] arrays = new int[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                arrays[i][j] = new Random().nextInt(max) + min;
+                arrays[i][j] = random.nextInt(max) + min;
 
             }
         }
