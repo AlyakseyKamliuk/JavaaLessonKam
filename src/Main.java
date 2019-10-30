@@ -157,4 +157,5 @@ public class Main {
         LocalDate age = LocalDate.now().minus(Period.of(year, month, day));
         System.out.println("Ваш возраст составляет:" + age.getYear() + " лет " + age.getMonthValue() + " месяцев " + age.getDayOfMonth() + " дней");
     }
+
 }
