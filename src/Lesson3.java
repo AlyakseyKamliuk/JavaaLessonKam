@@ -1,58 +1,17 @@
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Random;
 
 public class Lesson3 {
-    public enum monDay {January, February, March, April, May, June, July, August, September, October, November, December}
-
-    public enum Holiday {
-        NEWYER("30.12"),
-        CHRISTMAS("5.1"),
-        LABORDAY("1.5");
-
-
-        String date;
-
-        Holiday(String name) {
-            this.date = name;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public int getDay() {
-            int a = date.lastIndexOf(".");
-            String s = date.substring(0, a);
-            return Integer.valueOf(s);
-        }
-
-        public int getMonth() {
-            int a = date.lastIndexOf(".") + 1;
-            String s = date.substring(a, date.length());
-            return Integer.valueOf(s);
-        }
-
-
-        public String toString() {
-            return "holiday{" +
-                    "date='" + date + '\'' +
-                    '}';
-        }
-    }
 
     public static void main(String[] args) {
 
         System.out.println("Задание 2");
-        System.out.printf("In %s %d days \n", monDay.March, daysPerMonth2019(monDay.March));
-
+        System.out.printf("In %s %d days \n", MonDay.MARCH, daysPerMonth2019(MonDay.MARCH));
         int[] array = Lesson2.randomArray(10);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
         }
         System.out.println();
         System.out.println("Задание 3");
-
         System.out.printf("The difference between the minimum and maximum elements of the array: %d \n", differenceMinMax(array));
         System.out.println("Задание 4");
         System.out.println(isTestForEqualityArray(array, array));
@@ -62,7 +21,6 @@ public class Lesson3 {
         int[][] twoDimArray = createTwoDimensionalRandomArray(10, 10, 20, 1);
         System.out.println("Задание 6");
         prinTwoDimArray("", twoDimArray);
-
         System.out.printf("Min elements: %d \n", minElementTwoDimensionalArray(twoDimArray)[2]);
         System.out.println();
         System.out.println("Задание 7");
@@ -78,27 +36,23 @@ public class Lesson3 {
         System.out.printf("Result: %d \n", productOfTheDiagonalElements(twoDimArray, 9));
         System.out.println();
         System.out.println("Задание 10**");
-        holidayPassed(Holiday.NEWYER);
-        holidayPassed(Holiday.CHRISTMAS);
-        holidayPassed(Holiday.LABORDAY);
-
+        Holiday.CHRISTMAS.holidayPassed();
+        Holiday.LABORDAY.holidayPassed();
+        Holiday.NEWYER.holidayPassed();
     }
 
-
-    public static int daysPerMonth2019(monDay month) {
+    public static int daysPerMonth2019(MonDay month) {
 
         switch (month) {
-            case February:
+            case FEBRUARY:
                 return 28;
-            case April:
+            case APRIL:
                 return 30;
-            case May:
-                return 31;
-            case June:
+            case JUNE:
                 return 30;
-            case September:
+            case SEPTEMBER:
                 return 30;
-            case November:
+            case NOVEMBER:
                 return 30;
             default:
                 return 31;
@@ -247,19 +201,19 @@ public class Lesson3 {
 
     public static int productOfTheDiagonalElements(int[][] array, int searchNum) {
         int rez = 1;
-        int[] tmpArray = searchEl(array, searchNum);
+        int[] tmpArray = searchElementTwoDimensionalArray(array, searchNum);
         if (tmpArray[0] == -1) {
             return -1;
         }
-        rez = rez * productOfElementsInIncrements(array, tmpArray[0], tmpArray[1], -1, -1);
-        rez = rez * productOfElementsInIncrements(array, tmpArray[0], tmpArray[1], 1, 1);
-        rez = rez * productOfElementsInIncrements(array, tmpArray[0], tmpArray[1], -1, 1);
-        rez = rez * productOfElementsInIncrements(array, tmpArray[0], tmpArray[1], 1, -1);
+        rez = rez * traverse(array, tmpArray[0], tmpArray[1], -1, -1);
+        rez = rez * traverse(array, tmpArray[0], tmpArray[1], 1, 1);
+        rez = rez * traverse(array, tmpArray[0], tmpArray[1], -1, 1);
+        rez = rez * traverse(array, tmpArray[0], tmpArray[1], 1, -1);
 
         return rez;
     }
 
-    public static int productOfElementsInIncrements(int[][] array, int i, int j, int stepI, int stepJ) {
+    public static int traverse(int[][] array, int i, int j, int stepI, int stepJ) {
 
         int work = 1;
 
@@ -279,7 +233,7 @@ public class Lesson3 {
     }
 
 
-    public static int[] searchEl(int[][] array, int searchNum) {
+    public static int[] searchElementTwoDimensionalArray(int[][] array, int searchNum) {
         int[] tmpArray = new int[2];
         tmpArray[0] = -1;
         tmpArray[1] = -1;
@@ -294,14 +248,5 @@ public class Lesson3 {
         return tmpArray;
     }
 
-    public static void holidayPassed(Holiday holiday) {
 
-        int days = Period.between(LocalDate.of(LocalDate.now().getYear(), holiday.getMonth(), holiday.getDay()), LocalDate.now()).getDays();
-        int months = Period.between(LocalDate.of(LocalDate.now().getYear(), holiday.getMonth(), holiday.getDay()), LocalDate.now()).getMonths();
-        int years = Period.between(LocalDate.of(LocalDate.now().getYear(), holiday.getMonth(), holiday.getDay()), LocalDate.now()).getYears();
-
-        if (days <= 0 && months <= 0 && years <= 0) {System.out.printf("%s %s Еще будет \n",holiday.name(),holiday.getDate());}
-        else {System.out.printf("%s %s Прошел \n",holiday.name(),holiday.getDate());}
-
-    }
 }
