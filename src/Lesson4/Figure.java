@@ -1,0 +1,36 @@
+package Lesson4;
+
+    public class Figure {
+      private String name;
+
+        public Figure(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+    public void name(){
+        System.out.println(name);
+    }
+
+
+    public double perimeter(){
+        return 0;
+    }
+
+    public double area() {
+        return 0;
+    }
+
+      public String toString() {
+        return "Figure{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+}
