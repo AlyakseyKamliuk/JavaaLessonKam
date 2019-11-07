@@ -14,7 +14,7 @@ public class Lesson3 {
         System.out.println("Задание 3");
         System.out.printf("The difference between the minimum and maximum elements of the array: %d \n", differenceMinMax(array));
         System.out.println("Задание 4");
-        System.out.println(isTestForEqualityArray(array, array));
+        System.out.println(aReEquality(array, array));
         System.out.println("Задание 5");
         int[] testArray = {0, 1, 4, 5, 6, 3, 9, 7, 2, 6, 2, 3};
         System.out.println(findingMissingNumber(testArray));
@@ -92,7 +92,7 @@ public class Lesson3 {
         return max;
     }
 
-    public static boolean isTestForEqualityArray(int[] arr1, int[] arr2) {
+    public static boolean aReEquality(int[] arr1, int[] arr2) {
         if (arr1.length != arr2.length) return false;
 
         for (int i = 0; i < arr1.length; i++) {
