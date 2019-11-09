@@ -1,8 +1,8 @@
 package Lesson4.SeaBattle;
 
 public class Cell {
-    private int locationX=0;
-    private int locationY=0;
+    private int locationX = 0;
+    private int locationY = 0;
 
     public Cell() {
     }

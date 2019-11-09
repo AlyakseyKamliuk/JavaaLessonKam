@@ -1,6 +1,6 @@
 package Lesson4;
 
-public class Ball extends Figure{
+public class Ball extends Figure {
 
     int radiusBall;
 
@@ -9,11 +9,11 @@ public class Ball extends Figure{
         this.radiusBall = radiusBall;
     }
 
-    public int getRadiusBall() {
+    public int getRadius() {
         return radiusBall;
     }
 
-    public void setRadiusBall(int radiusBall) {
+    public void setRadius(int radiusBall) {
         this.radiusBall = radiusBall;
     }
 
@@ -23,19 +23,14 @@ public class Ball extends Figure{
                 '}';
     }
 
-    public void name(){
-        System.out.println("Шар");
-    }
 
-
-    public double perimeter(){
-        return 4*Math.PI*radiusBall*radiusBall;
+    public double perimeter() {
+        return 4 * Math.PI * radiusBall * radiusBall;
     }
 
     public double area() {
-        return  4/3*Math.PI*radiusBall*radiusBall*radiusBall;
+        return 4 / 3 * Math.PI * radiusBall * radiusBall * radiusBall;
     }
-
 
 
 }

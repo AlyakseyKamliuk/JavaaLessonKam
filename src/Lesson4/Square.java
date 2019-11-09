@@ -1,6 +1,6 @@
 package Lesson4;
 
-public class Square extends Figure{
+public class Square extends Figure {
     private int longSide;
 
     public Square(String name, int longSide) {
@@ -16,17 +16,12 @@ public class Square extends Figure{
         this.longSide = longSide;
     }
 
-    public void name(){
-        System.out.println("Квадрат");
-    }
-
-
-    public double perimeter(){
-        return 4*longSide;
+    public double perimeter() {
+        return 4 * longSide;
     }
 
     public double area() {
-        return longSide*longSide;
+        return longSide * longSide;
     }
 
 

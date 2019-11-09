@@ -8,13 +8,6 @@ import java.util.Map;
 public class Picture {
     private List<Figure> list = new ArrayList<>();
 
-
-
-
-    public Picture(List<Figure> list) {
-        this.list = list;
-    }
-
     public List<Figure> getList() {
         return list;
     }
@@ -29,46 +22,42 @@ public class Picture {
                 '}';
     }
 
-    public void name(){
-        for (int i = 0; i < getList().size(); i++) {
-         getList().get(i).name();
-        }
+    public void addFigure(Figure figure){
+        this.list.add(figure) ;
     }
 
-
-    public double perimeter(){
-        double perimetrPicture=0;
+    public double perimeter() {
+        double perimetrPicture = 0;
         for (int i = 0; i < getList().size(); i++) {
-            perimetrPicture+=getList().get(i).perimeter();
+            perimetrPicture += getList().get(i).perimeter();
         }
 
         return perimetrPicture;
     }
 
     public double area() {
-        double sumAreas=0;
+        double sumAreas = 0;
         for (int i = 0; i < getList().size(); i++) {
-            sumAreas+=getList().get(i).area();
+            sumAreas += getList().get(i).area();
         }
 
         return sumAreas;
     }
 
-    public void NumberOfShapesInPpicture(){
-        Map<String,Integer> mapResult=new HashMap<>();
+    public void numberOfShapesInPicture() {
+        Map<String, Integer> mapResult = new HashMap<>();
         for (int i = 0; i < getList().size(); i++) {
-            if (mapResult.get(getList().get(i).getClass().getSimpleName())!=null){
-            mapResult.put(getList().get(i).getClass().getSimpleName(),mapResult.get(getList().get(i).getClass().getSimpleName()).intValue()+1);}
-            else {
-                mapResult.put(getList().get(i).getClass().getSimpleName(),1);
+            if (mapResult.get(getList().get(i).getClass().getSimpleName()) != null) {
+                mapResult.put(getList().get(i).getClass().getSimpleName(),mapResult.get(getList().get(i).getClass().getSimpleName()).intValue() + 1);
+            } else {
+                mapResult.put(getList().get(i).getClass().getSimpleName(), 1);
             }
         }
 
-        for (Map.Entry<String,Integer> map:mapResult.entrySet()){
-            System.out.println(map.getKey()+" "+map.getValue());
+        for (Map.Entry<String, Integer> map : mapResult.entrySet()) {
+            System.out.println(map.getKey() + " " + map.getValue());
         }
     }
-
 
 
 }

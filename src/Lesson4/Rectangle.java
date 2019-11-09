@@ -1,7 +1,8 @@
 package Lesson4;
 
-public class Rectangle extends Figure{
-    private int length,width;
+public class Rectangle extends Figure {
+    private int length;
+    private int width;
 
     public Rectangle(String name, int length, int width) {
         super(name);
@@ -33,17 +34,12 @@ public class Rectangle extends Figure{
     }
 
 
-    public void name(){
-        System.out.println("Прямоугольник");
-    }
-
-
-    public double perimeter(){
-        return 2*(length+width);
+    public double perimeter() {
+        return 2 * (length + width);
     }
 
     public double area() {
-        return length*width;
+        return length * width;
     }
 
 

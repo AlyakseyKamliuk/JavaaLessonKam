@@ -1,8 +1,7 @@
 package Lesson4;
 
 
-
-public class Сircle extends Figure{
+public class Сircle extends Figure {
 
     private int radiusCircle;
 
@@ -11,11 +10,11 @@ public class Сircle extends Figure{
         this.radiusCircle = radiusCircle;
     }
 
-    public int getRadiusCircle() {
+    public int getRadius() {
         return radiusCircle;
     }
 
-    public void setRadiusCircle(int radiusCircle) {
+    public void setRadius(int radiusCircle) {
         this.radiusCircle = radiusCircle;
     }
 
@@ -25,19 +24,13 @@ public class Сircle extends Figure{
                 '}';
     }
 
-    public void name(){
-        System.out.println("Круг");
-    }
-
-
-    public double perimeter(){
-        return 2*Math.PI*radiusCircle;
+    public double perimeter() {
+        return 2 * Math.PI * radiusCircle;
     }
 
     public double area() {
-        return Math.PI*radiusCircle*radiusCircle;
+        return Math.PI * radiusCircle * radiusCircle;
     }
-
 
 
 }

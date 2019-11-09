@@ -6,17 +6,17 @@ import java.util.List;
 public class Ship {
 
     private String nameShip;
-    private int sizeNumberOfCells;
-    private List<Cell> xYlocation=new ArrayList<>();
-    private boolean locatedOnTheMap =false;
+    private int shipSize;
+    private List<Cell> xYlocation = new ArrayList<>();
+    private boolean locatedOnTheMap = false;
 
     public Ship(String nameShip, int numberOfCells) {
         this.nameShip = nameShip;
-        this.sizeNumberOfCells = numberOfCells;
+        this.shipSize = numberOfCells;
     }
 
-    public void addCell(int locationX,int locationY){
-        xYlocation.add(new Cell(locationX,locationY));
+    public void addCell(int locationX, int locationY) {
+        xYlocation.add(new Cell(locationX, locationY));
     }
 
     public boolean isLocatedOnTheMap() {
@@ -32,12 +32,12 @@ public class Ship {
     }
 
 
-    public int getSizeNumberOfCells() {
-        return sizeNumberOfCells;
+    public int getshipSize() {
+        return shipSize;
     }
 
-    public void setSizeNumberOfCells(int sizeNumberOfCells) {
-        this.sizeNumberOfCells = sizeNumberOfCells;
+    public void setshipSize(int sizeNumberOfCells) {
+        this.shipSize = sizeNumberOfCells;
     }
 
     public List<Cell> getxYlocation() {
@@ -52,7 +52,7 @@ public class Ship {
     public String toString() {
         return "Ship{" +
                 "nameShip='" + nameShip + '\'' +
-                ", sizeNumberOfCells=" + sizeNumberOfCells +
+                ", sizeNumberOfCells=" + shipSize +
                 ", xYlocation=" + xYlocation +
                 ", locatedOnTheMap=" + locatedOnTheMap +
                 '}';

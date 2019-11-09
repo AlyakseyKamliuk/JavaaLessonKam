@@ -1,5 +1,10 @@
 package Lesson4;
 
+import com.sun.deploy.util.ArrayUtil;
+
+import java.sql.Array;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,16 +39,12 @@ public class Mathematics {
     }
 
     public int[] add(int a[], int b[]) {
-        String stingArray = a.toString() + b.toString();
-        int[] rezArray = new int[a.length + b.length];
-        for (int i = 0; i < rezArray.length; i++) {
-            rezArray[i] = Integer.parseInt(stingArray.substring(i, i + 1));
-        }
-        return rezArray;
+       int[] arrayRez=Arrays.copyOf(a,a.length+b.length);
+       System.arraycopy(b,0,arrayRez,a.length,b.length);
+       return arrayRez;
     }
 
     public List add(List a, List b) {
-
         a.addAll(b);
         return a;
     }
