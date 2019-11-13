@@ -29,7 +29,7 @@ public class Сircle extends Figure {
     }
 
     public double area() {
-        return Math.PI * radiusCircle * radiusCircle;
+        return Math.PI * Math.pow(radiusCircle, 2);
     }
 
 

@@ -5,12 +5,14 @@ import java.util.*;
 public class ActionsWithShips {
 
     private final Random random = new Random();
+    private int multiplierSizeGame=1;
     private HashSet<String> occupiedCells = new LinkedHashSet<>();
 
 
-    public void creationOfRandomShips(Ship ship, int sizeNumberOfCells) {
-        int locationX = random.nextInt(10);
-        int locationY = random.nextInt(10);
+    public void creationOfRandomShips(Ship ship, int sizeNumberOfCells, int multiplierSizeGame) {
+        this.multiplierSizeGame=multiplierSizeGame;
+        int locationX = random.nextInt(10*multiplierSizeGame);
+        int locationY = random.nextInt(10*multiplierSizeGame);
         int placementDirectionOnTheXYaxis = random.nextInt(2);
         int offsetByX = 0;
         int offsetByY = 0;
@@ -32,7 +34,7 @@ public class ActionsWithShips {
                 locationX += offsetByX;
                 locationY += offsetByY;
             } else {
-                creationOfRandomShips(ship, sizeNumberOfCells);
+                creationOfRandomShips(ship, sizeNumberOfCells, multiplierSizeGame);
                 return;
             }
         }
@@ -60,7 +62,7 @@ public class ActionsWithShips {
 
         sizeNumberOfCells--;
         return !(occupiedCells.contains("" + locationX + "" + locationY)
-                    || (locationX >= 10)
-                    || (locationY >= 10));
+                    || (locationX >= 10*multiplierSizeGame)
+                    || (locationY >= 10*multiplierSizeGame));
     }
 }

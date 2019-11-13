@@ -38,7 +38,7 @@ public class Product {
         this.nameProduct = nameProduct;
     }
 
-    @Override
+
     public String toString() {
         return "Product{" +
                 "id=" + id +
@@ -46,4 +46,29 @@ public class Product {
                 ", nameProduct='" + nameProduct + '\'' +
                 '}';
     }
+
+
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+
+        Product product = (Product) o;
+
+        if (getId() != product.getId()) return false;
+        if (Double.compare(product.getPriceProduct(), getPriceProduct()) != 0) return false;
+        return true;
+    }
+
+
+    public int hashCode() {
+        int result;
+        long temp;
+        result = getId();
+        temp = Double.doubleToLongBits(getPriceProduct());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + getNameProduct().hashCode();
+        return result;
+    }
+
 }

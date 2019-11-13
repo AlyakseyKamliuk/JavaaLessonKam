@@ -1,31 +1,30 @@
 package Lesson5;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-/**
- * Created by Alex on 11.11.2019.
- */
 public class Check {
-   private List <Product> productList=new ArrayList<>();
+    private Map<Product, Integer> productMap = new HashMap<>();
+    private double sum = 0;
 
-    public void generateCheck()
-    {
-        double sum=0;
-        System.out.println("                Check");
-        for (int i = 0; i < productList.size(); i++) {
-            sum+=productList.get(i).getPriceProduct();
-            System.out.printf("%d:%d %s %f\n",i, productList.get(i).getId(),productList.get(i).getNameProduct(),productList.get(i).getPriceProduct());
-
+    public void generateCheck() {
+        System.out.println("             Check");
+        for (Map.Entry<Product, Integer> p : productMap.entrySet()) {
+            System.out.printf("%s: %d \n", p.getKey().toString(), p.getValue());
         }
-        System.out.printf("            Price: %f \n",sum);
+        System.out.printf("            Price: %f \n", sum);
     }
 
 
-    public void addProductinCheck(Product product){
-        productList.add(product);
+    public void addProductInCheck(Product product) {
+        if (!productMap.containsKey(product)) {
+            productMap.put(product, 1);
+            sum += product.getPriceProduct();
+        } else {
+            productMap.replace(product, productMap.get(product) + 1);
+            sum += product.getPriceProduct();
+        }
     }
-
 
 }
 
