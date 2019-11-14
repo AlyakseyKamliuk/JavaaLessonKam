@@ -15,15 +15,16 @@ public class ShopZD1 implements Shop {
     }
 
 
-    public void generateCheckProduct(List<Integer> list) {
+    public Check generateCheckProduct(List<Integer> list) {
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < listProductShop.size(); j++) {
                 if (listProductShop.get(j).getId() == list.get(i)) {
                     check.addProductInCheck(listProductShop.get(j));
-                    break;
+                   j=listProductShop.size()-1;
                 }
             }
         }
+        return check;
     }
 
     public void printCheck() {

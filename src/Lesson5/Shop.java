@@ -6,7 +6,7 @@ public interface Shop {
 
     void addProduct(Product product);
 
-    void generateCheckProduct(List<Integer> list);
+    Check generateCheckProduct(List<Integer> list);
 
 
 }

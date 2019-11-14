@@ -14,7 +14,7 @@ public class ShopZD2 implements Shop {
         super();
     }
 
-    public void generateCheckProduct(List<Integer> list) {
+    public Check generateCheckProduct(List<Integer> list) {
         for (int i = 0; i < list.size(); i++) {
             for (Map.Entry<Product, Integer> p : mapProduct.entrySet()) {
                 if (p.getKey().getId() == list.get(i)) {
@@ -24,10 +24,11 @@ public class ShopZD2 implements Shop {
                     }
                     check.addProductInCheck(p.getKey());
                     p.setValue(p.getValue() - 1);
-                    break;
+                      break;
                 }
             }
         }
+        return check;
     }
 
 
