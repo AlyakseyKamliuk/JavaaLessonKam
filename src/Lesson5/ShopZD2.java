@@ -8,61 +8,68 @@ import java.util.Map;
 public class ShopZD2 implements Shop {
 
     private Map<Product, Integer> mapProduct = new HashMap<>();
-    private Check check = new Check();
-    private Map<Integer,Product> productSearch=new HashMap<>();
+    private Map<Integer, Product> idToProduct = new HashMap<>();
+
 
     public ShopZD2() {
         super();
     }
 
     public Check generateCheckProduct(List<Integer> requiredProductIds) {
+        Check check = new Check();
         for (int i = 0; i < requiredProductIds.size(); i++) {
-         copyingListToCheck(requiredProductIds.get(i));
+            copyingListToCheck(requiredProductIds.get(i), check);
         }
         return check;
     }
 
+    private void copyingListToCheck(int productId, Check check) {
+        Integer amountProducts = mapProduct.get(idToProduct.get(productId));
+        Product product = idToProduct.get(productId);
 
-    private void copyingListToCheck(int requiredProductIds){
-        if (productSearch.containsKey(requiredProductIds)&&(mapProduct.get(productSearch.get(requiredProductIds))!=0)){
-            check.addProductInCheck(productSearch.get(requiredProductIds));
-
-            if (mapProduct.get(productSearch.get(requiredProductIds))==1){
-                mapProduct.remove(productSearch.get(requiredProductIds));
-                productSearch.remove(requiredProductIds);
-            }  else {
-                mapProduct.put(productSearch.get(requiredProductIds),mapProduct.get(productSearch.get(requiredProductIds))-1);
-            }
+        if (idToProduct.containsKey(productId)) {
+            incrementProduct(amountProducts, product);
+            check.addProductInCheck(product);
         }
     }
 
-    public void deleteProductFromShop(Product product) {
-        mapProduct.remove(product);
+    private void incrementProduct(Integer amountProducts, Product product) {
+        if (isAmountNot0(amountProducts)) {
+            removeProductFromShop(product, product.getId());
+        } else {
+            mapProduct.put(product, amountProducts - 1);
+        }
     }
 
-    public void printCheck() {
+    private boolean isAmountNot0(int productID) {
+        return (productID <= 1);
+    }
+
+    public void removeProductFromShop(Product product, int requiredProductId) {
+        mapProduct.remove(product);
+        idToProduct.remove(requiredProductId);
+    }
+
+    public void printCheck(Check check) {
         check.generateCheck();
     }
 
     public void addProduct(Product product) {
         if (!mapProduct.containsKey(product)) {
             mapProduct.put(product, 1);
-            productSearch.put(product.getId(),product);
         } else {
             mapProduct.put(product, mapProduct.get(product) + 1);
-            productSearch.put(product.getId(),product);
         }
+        idToProduct.put(product.getId(), product);
     }
 
-
-    public Map<Product, Integer> getMapProduct() {
+    private Map<Product, Integer> getMapProduct() {
         return mapProduct;
     }
 
-    public void setMapProduct(Map<Product, Integer> mapProduct) {
+    private void setMapProduct(Map<Product, Integer> mapProduct) {
         this.mapProduct = mapProduct;
     }
-
 
     public String toString() {
         return "ShopZD2{" +

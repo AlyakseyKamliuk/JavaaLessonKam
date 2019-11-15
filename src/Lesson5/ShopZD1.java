@@ -8,7 +8,7 @@ public class ShopZD1 implements Shop {
 
     private List<Product> productsShop = new ArrayList<>();
 
-    private Check check = new Check();
+
 
 
     public ShopZD1() {
@@ -17,15 +17,16 @@ public class ShopZD1 implements Shop {
 
 
     public Check generateCheckProduct(List<Integer> requiredProductIds) {
+        Check check = new Check();
         boolean conditionIsMet=false;
         for (int i = 0; i < requiredProductIds.size(); i++) {
-            copyingListToCheck(requiredProductIds.get(i));
+            copyingListToCheck(requiredProductIds.get(i),check);
         }
         return check;
     }
 
 
-    private void copyingListToCheck(int requiredProductIds){
+    private void copyingListToCheck(int requiredProductIds, Check check){
         for (int j = 0; j < productsShop.size(); j++) {
             if (productsShop.get(j).getId() == requiredProductIds) {
                 check.addProductInCheck(productsShop.get(j));
@@ -35,7 +36,7 @@ public class ShopZD1 implements Shop {
     }
 
 
-    public void printCheck() {
+    public void printCheck(Check check) {
         check.generateCheck();
     }
 
@@ -44,16 +45,16 @@ public class ShopZD1 implements Shop {
         productsShop.add(product);
     }
 
-    public List<Product> getProductShop() {
+   private List<Product> getProductShop() {
         return productsShop;
     }
 
-    public void setProductShop(List<Product> productShop) {
+   private void setProductShop(List<Product> productShop) {
         productsShop = productShop;
     }
 
 
-    void removeProduct(Product product) {
+      void removeProduct(Product product) {
         productsShop.remove(product);
     }
 
@@ -61,7 +62,6 @@ public class ShopZD1 implements Shop {
     public String toString() {
         return "ShopZD1{" +
                 "productsShop=" + productsShop +
-                ", check=" + check +
                 '}';
     }
 }

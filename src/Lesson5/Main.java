@@ -30,9 +30,7 @@ public class Main {
         listTest.add(10122);
         listTest.add(10121);
 
-
-        shopZD1.generateCheckProduct(listTest);
-        shopZD1.printCheck();
+        shopZD1.printCheck(shopZD1.generateCheckProduct(listTest));
 
 
         List<Integer> listTest2 = new ArrayList<>();
@@ -47,8 +45,7 @@ public class Main {
         shopZD2.addProduct(monitor);
         shopZD2.addProduct(monitor);
         shopZD2.addProduct(mouse);
-        shopZD2.generateCheckProduct(listTest2);
-        shopZD2.printCheck();
+        shopZD2.printCheck(shopZD2.generateCheckProduct(listTest2));
 
     }
 }
