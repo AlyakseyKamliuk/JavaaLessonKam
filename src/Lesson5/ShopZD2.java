@@ -9,28 +9,32 @@ public class ShopZD2 implements Shop {
 
     private Map<Product, Integer> mapProduct = new HashMap<>();
     private Check check = new Check();
+    private Map<Integer,Product> productSearch=new HashMap<>();
 
     public ShopZD2() {
         super();
     }
 
-    public Check generateCheckProduct(List<Integer> list) {
-        for (int i = 0; i < list.size(); i++) {
-            for (Map.Entry<Product, Integer> p : mapProduct.entrySet()) {
-                if (p.getKey().getId() == list.get(i)) {
-                    if (p.getValue() <= 0) {
-                        mapProduct.remove(p.getKey());
-                        break;
-                    }
-                    check.addProductInCheck(p.getKey());
-                    p.setValue(p.getValue() - 1);
-                      break;
-                }
-            }
+    public Check generateCheckProduct(List<Integer> requiredProductIds) {
+        for (int i = 0; i < requiredProductIds.size(); i++) {
+         copyingListToCheck(requiredProductIds.get(i));
         }
         return check;
     }
 
+
+    private void copyingListToCheck(int requiredProductIds){
+        if (productSearch.containsKey(requiredProductIds)&&(mapProduct.get(productSearch.get(requiredProductIds))!=0)){
+            check.addProductInCheck(productSearch.get(requiredProductIds));
+
+            if (mapProduct.get(productSearch.get(requiredProductIds))==1){
+                mapProduct.remove(productSearch.get(requiredProductIds));
+                productSearch.remove(requiredProductIds);
+            }  else {
+                mapProduct.put(productSearch.get(requiredProductIds),mapProduct.get(productSearch.get(requiredProductIds))-1);
+            }
+        }
+    }
 
     public void deleteProductFromShop(Product product) {
         mapProduct.remove(product);
@@ -43,8 +47,10 @@ public class ShopZD2 implements Shop {
     public void addProduct(Product product) {
         if (!mapProduct.containsKey(product)) {
             mapProduct.put(product, 1);
+            productSearch.put(product.getId(),product);
         } else {
             mapProduct.put(product, mapProduct.get(product) + 1);
+            productSearch.put(product.getId(),product);
         }
     }
 
