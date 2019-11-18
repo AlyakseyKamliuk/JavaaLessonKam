@@ -1,6 +1,6 @@
 package Lesson4;
 
-public class Figure {
+public abstract class Figure {
     private String name;
 
     public Figure(String name) {

@@ -2,7 +2,7 @@ package Lesson4;
 
 public class Ball extends Figure {
 
-    int radiusBall;
+    private int radiusBall;
 
     public Ball(String name, int radiusBall) {
         super(name);
@@ -29,7 +29,7 @@ public class Ball extends Figure {
     }
 
     public double area() {
-        return 4 / 3 * Math.PI * radiusBall * radiusBall * radiusBall;
+        return 4 / 3 * Math.PI * Math.pow(radiusBall,3);
     }
 
 
