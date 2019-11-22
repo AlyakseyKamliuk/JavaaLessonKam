@@ -44,33 +44,14 @@ public class ShopZD2Test {
     }
 
     @Test
-    public void testTypeMismatches(){
-        String strError=null;
-        Mouse mouseError;
-        try {
-            mouseError=new Mouse(Integer.parseInt(strError), 10, "4Tech");
-        } catch (NumberFormatException e) {
-            strError=e.toString();
-        }
-
-        Assert.assertNotNull(strError);
-    }
-
-
-    @Test
-    public void testShopEquals(){
-        Assert.assertNotEquals(shopZD2Expected,shopZD2Actual);
-        shopZD2Expected=shopZD2Actual;
-        Assert.assertEquals(shopZD2Expected,shopZD2Actual);
-    }
-
-    @Test
     public void testCheckPrice() {
 
         double priceExpected=1510;
         Check checkAktual=shopZD2Actual.generateCheckProduct(listTest2);
         Assert.assertEquals(priceExpected,checkAktual.getSum(),0);
     }
+
+
     @Test
     public void testCopyingListToCheckNotNull(){
         shopZD2Actual.generateCheckProduct(null);
@@ -80,16 +61,13 @@ public class ShopZD2Test {
     @Test
     public void testAddingAnExistingProduct(){
         listTest2.add(10);
-        String str=shopZD2Actual.toString();
-        Assert.assertNotEquals("id=10",str);
+        shopZD2Actual.generateCheckProduct(listTest2);
+        Assert.assertNull(shopZD2Actual.getProduct(10));
     }
 
     @Test
     public void testProductIdIsInTheShop(){
-        listTest2.add(15480);
-        String str=shopZD2Actual.toString();
-        Assert.assertTrue(stringFoundOneTime("id=15480",str));
-
+        Assert.assertNotNull(shopZD2Actual.getProduct(15480));
     }
 
     private boolean stringFoundOneTime(String searchStr, String actualString)
@@ -102,7 +80,6 @@ public class ShopZD2Test {
 
         double priceExpected=1510;
         Check checkAktual= shopZD2Actual.generateCheckProduct(listTest2);
-
         Assert.assertNotEquals(shopZD2Expected, shopZD2Actual);
         shopZD2Expected= shopZD2Actual;
         Assert.assertEquals(shopZD2Expected, shopZD2Actual);
@@ -110,6 +87,7 @@ public class ShopZD2Test {
         Assert.assertEquals(priceExpected,checkAktual.getSum(),0);
 
     }
+
 
     @Test
     public void testAddListIDNullToTheShop(){
@@ -138,6 +116,25 @@ public class ShopZD2Test {
         Assert.assertTrue(stringActual.contains(stringTest));
     }
 
+    @Test
+    public void testAddProductToTheShop(){
+        Product keybard = new Keyboard(10128, 300, "4Tech2");
+        shopZD2Actual.addProduct(keybard);
+        Assert.assertNotNull(shopZD2Actual.containsProduct(keybard));
+    }
 
+
+    @Test
+    public void testNumberInCheck(){
+        shopZD2Actual.generateCheckProduct(listTest2);
+        Product monitor = new Monitor(15480, 500, "LG");
+        Assert.assertEquals(3,shopZD2Actual.numberOfProductsInTheCheck(monitor),0);
+    }
+
+    @Test
+    public void testEqualsProductInCheck(){
+        Product monitor = new Monitor(15480, 500, "LG");
+        Assert.assertEquals(monitor,shopZD2Actual.containsProduct(monitor));
+    }
 
 }

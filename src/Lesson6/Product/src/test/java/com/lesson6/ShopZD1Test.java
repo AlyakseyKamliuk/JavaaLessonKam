@@ -33,6 +33,7 @@ public class ShopZD1Test {
         listTest.add(10120);
         listTest.add(10122);
         listTest.add(10121);
+        shopZD1Expected.generateCheckProduct(listTest);
     }
 
     @Test
@@ -48,27 +49,6 @@ public class ShopZD1Test {
     }
 
     @Test
-    public void testTypeMismatches(){
-        String strError=null;
-        Mouse mouseError;
-        try {
-            mouseError=new Mouse(Integer.parseInt(strError), 10, "4Tech");
-        } catch (NumberFormatException e) {
-            strError=e.toString();
-        }
-
-        Assert.assertNotNull(strError);
-    }
-
-
-    @Test
-    public void testShopEquals(){
-        Assert.assertNotEquals(shopZD1Expected,shopZD1Actual);
-        shopZD1Expected=shopZD1Actual;
-        Assert.assertEquals(shopZD1Expected,shopZD1Actual);
-    }
-
-    @Test
     public void testCheckPrice() {
 
         double priceExpected=1080;
@@ -80,13 +60,9 @@ public class ShopZD1Test {
 
     @Test
     public void testRemoveProduct() {
-        String stringExpected;
-        String stringActual;
-        stringExpected=shopZD1Actual.toString();
         Product monitor = new Monitor(15480, 500, "LG");
         shopZD1Actual.removeProduct(monitor);
-        stringActual=shopZD1Actual.toString();
-        Assert.assertNotEquals(stringExpected,stringActual);
+        Assert.assertNull(shopZD1Actual.containsProduct(monitor));
     }
 
     @Test
@@ -97,9 +73,7 @@ public class ShopZD1Test {
 
     @Test
     public void testAddingAnExistingProduct(){
-        listTest.add(10);
-        String str=shopZD1Actual.toString();
-        Assert.assertNotEquals("id=10",str);
+        Assert.assertNull(shopZD1Actual.getProduct(10));
     }
 
     @Test
@@ -109,12 +83,31 @@ public class ShopZD1Test {
     }
 
     @Test
-    public void testProductIdIsInTheShop(){
-        listTest.add(15480);
+    public void testAddProductToTheShop(){
+        Product keybard = new Keyboard(10128, 300, "4Tech2");
+        shopZD1Actual.addProduct(keybard);
+        Assert.assertNotNull(shopZD1Actual.containsProduct(keybard));
+    }
+
+    @Test
+    public void testDuplicateProductIdIsInTheShop(){
         String str=shopZD1Actual.toString();
         Assert.assertTrue(stringFoundOneTime("id=15480",str));
-
     }
+    @Test
+    public void testNumberInCheck(){
+        Product monitor = new Monitor(15480, 500, "LG");
+        Assert.assertEquals(2,shopZD1Expected.numberOfProductsInTheCheck(monitor),0);
+    }
+
+    @Test
+    public void testEqualsProductInCheck(){
+        Product monitor = new Monitor(15480, 500, "LG");
+        Assert.assertEquals(monitor,shopZD1Expected.containsProduct(monitor));
+    }
+
+
+
 
     private boolean stringFoundOneTime(String searchStr, String actualString)
     {

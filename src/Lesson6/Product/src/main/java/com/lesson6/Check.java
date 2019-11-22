@@ -26,6 +26,11 @@ public final class Check {
         }
     }
 
+    public Integer numberOfProductsInTheCheck(Product product){
+        return productMap.get(product);
+    }
+
+
     public double getSum() {
         return sum;
     }

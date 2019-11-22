@@ -47,6 +47,5 @@ public class Main {
         shopZD2.addProduct(mouse);
         shopZD2.printCheck(shopZD2.generateCheckProduct(listTest2));
 
-
     }
 }
