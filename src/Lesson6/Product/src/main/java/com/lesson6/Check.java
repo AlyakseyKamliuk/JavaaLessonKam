@@ -7,16 +7,18 @@ public final class Check {
     private final Map<Product, Integer> productMap = new HashMap<Product, Integer>();
     private double sum = 0;
 
-    public void generateCheck() {
-        System.out.println("             Check");
+    public String toString() {
+        String str="             Check\n";
         for (Map.Entry<Product, Integer> p : productMap.entrySet()) {
-            System.out.printf("%s: %d \n", p.getKey().toString(), p.getValue());
+            str=str+p.getKey().toString()+": "+ p.getValue()+"\n";
         }
-        System.out.printf("            Price: %f \n", sum);
+        str=str+"            Price:"+sum+"\n";
+        return str;
     }
 
 
     public void addProductInCheck(Product product) {
+        if (product==null) return;
         if (!productMap.containsKey(product)) {
             productMap.put(product, 1);
             sum += product.getPriceProduct();

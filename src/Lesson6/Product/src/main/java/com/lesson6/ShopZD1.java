@@ -7,7 +7,7 @@ import java.util.List;
 public class ShopZD1 implements Shop {
 
     private static List<Product> productsShop = new ArrayList<Product>();
-    Check check = new Check();
+    private Check check = new Check();
 
 
 
@@ -18,7 +18,7 @@ public class ShopZD1 implements Shop {
 
     public Check generateCheckProduct(List<Integer> requiredProductIds) {
 
-        if (requiredProductIds==null) {return null;}
+        if (requiredProductIds==null) {return check;}
         for (int i = 0; i < requiredProductIds.size(); i++) {
             copyingListToCheck(requiredProductIds.get(i),check);
         }
@@ -54,7 +54,7 @@ public class ShopZD1 implements Shop {
     }
 
     public void printCheck(Check check) {
-        check.generateCheck();
+        System.out.println(check.toString());
     }
 
     public void addProduct(Product product) {

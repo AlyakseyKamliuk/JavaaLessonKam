@@ -15,9 +15,10 @@ public class ShopZD1Test {
    private ShopZD1 shopZD1Expected = new ShopZD1();
    private ShopZD1 shopZD1Actual = new ShopZD1();
    private List<Integer> listTest = new ArrayList<Integer>();
-
+   private Check check=new Check();
     @Before
     public void init(){
+
         Product monitor = new Monitor(15480, 500, "LG");
         Product mouse = new Mouse(13540, 10, "4Tech");
         Product keybard = new Keyboard(10120, 25, "4Tech");
@@ -68,7 +69,7 @@ public class ShopZD1Test {
     @Test
     public void testCopyingListToCheckNotNull(){
         shopZD1Actual.generateCheckProduct(null);
-        Assert.assertNull( shopZD1Actual.generateCheckProduct(null));
+        Assert.assertNotNull( shopZD1Actual.generateCheckProduct(null));
     }
 
     @Test
@@ -79,7 +80,8 @@ public class ShopZD1Test {
     @Test
     public void testAddListIDNullToTheShop(){
         List<Integer> listTest=null;
-        Assert.assertNull(shopZD1Actual.generateCheckProduct(listTest));
+        System.out.println(shopZD1Actual.generateCheckProduct(listTest));
+        Assert.assertNotNull(shopZD1Actual.generateCheckProduct(listTest));
     }
 
     @Test
@@ -89,29 +91,20 @@ public class ShopZD1Test {
         Assert.assertNotNull(shopZD1Actual.containsProduct(keybard));
     }
 
+
     @Test
-    public void testDuplicateProductIdIsInTheShop(){
-        String str=shopZD1Actual.toString();
-        Assert.assertTrue(stringFoundOneTime("id=15480",str));
-    }
-    @Test
-    public void testNumberInCheck(){
+    public void testNumberInShop(){
         Product monitor = new Monitor(15480, 500, "LG");
         Assert.assertEquals(2,shopZD1Expected.numberOfProductsInTheCheck(monitor),0);
     }
 
     @Test
-    public void testEqualsProductInCheck(){
+    public void testEqualsProductInShop(){
         Product monitor = new Monitor(15480, 500, "LG");
         Assert.assertEquals(monitor,shopZD1Expected.containsProduct(monitor));
     }
 
 
 
-
-    private boolean stringFoundOneTime(String searchStr, String actualString)
-    {
-       return (actualString.lastIndexOf(searchStr)==actualString.indexOf(searchStr));
-    }
 
 }

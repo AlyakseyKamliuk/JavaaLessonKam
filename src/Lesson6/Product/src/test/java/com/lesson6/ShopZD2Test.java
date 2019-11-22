@@ -1,6 +1,5 @@
 package com.lesson6;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,7 +54,7 @@ public class ShopZD2Test {
     @Test
     public void testCopyingListToCheckNotNull(){
         shopZD2Actual.generateCheckProduct(null);
-        Assert.assertNull( shopZD2Actual.generateCheckProduct(null));
+        Assert.assertNotNull( shopZD2Actual.generateCheckProduct(null));
     }
 
     @Test
@@ -68,11 +67,6 @@ public class ShopZD2Test {
     @Test
     public void testProductIdIsInTheShop(){
         Assert.assertNotNull(shopZD2Actual.getProduct(15480));
-    }
-
-    private boolean stringFoundOneTime(String searchStr, String actualString)
-    {
-        return (actualString.lastIndexOf(searchStr)==actualString.indexOf(searchStr));
     }
 
     @Test
@@ -92,21 +86,9 @@ public class ShopZD2Test {
     @Test
     public void testAddListIDNullToTheShop(){
         List<Integer> listTest=null;
-        Assert.assertNull(shopZD2Actual.generateCheckProduct(listTest));
+        Assert.assertNotNull(shopZD2Actual.generateCheckProduct(listTest));
     }
 
-    @Test
-    public void testAddProductNotNull()  {
-       String exception=null;
-       Product product=null;
-
-        try {
-            shopZD2Actual.addProduct(product);
-        } catch (NullPointerException e) {
-           exception=e.toString();
-        }
-        Assert.assertNull(exception);
-    }
 
     @Test
     public void containsProductTest()  {

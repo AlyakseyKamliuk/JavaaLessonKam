@@ -9,7 +9,7 @@ public class ShopZD2 implements Shop {
 
     private Map<Product, Integer> mapProduct = new HashMap<Product, Integer>();
     private Map<Integer, Product> idToProduct = new HashMap<Integer, Product>();
-    Check check = new Check();
+    private Check check = new Check();
 
     public ShopZD2() {
         super();
@@ -17,7 +17,7 @@ public class ShopZD2 implements Shop {
 
     public Check generateCheckProduct(List<Integer> requiredProductIds) {
 
-        if (requiredProductIds==null) return null;
+        if (requiredProductIds==null) return check;
         for (int i = 0; i < requiredProductIds.size(); i++) {
             copyingListToCheck(requiredProductIds.get(i), check);
         }
@@ -52,7 +52,7 @@ public class ShopZD2 implements Shop {
     }
 
     public void printCheck(Check check) {
-        check.generateCheck();
+        System.out.println(check.toString());
     }
 
     public void addProduct(Product product) {
