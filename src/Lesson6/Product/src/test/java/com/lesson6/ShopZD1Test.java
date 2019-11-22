@@ -7,16 +7,14 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Alex on 17.11.2019.
  */
 public class ShopZD1Test {
 
-    ShopZD1 shopZD1Expected = new ShopZD1();
-    ShopZD1 shopZD1Actual = new ShopZD1();
-    List<Integer> listTest = new ArrayList<Integer>();
+   private ShopZD1 shopZD1Expected = new ShopZD1();
+   private ShopZD1 shopZD1Actual = new ShopZD1();
+   private List<Integer> listTest = new ArrayList<Integer>();
 
     @Before
     public void init(){
@@ -35,35 +33,60 @@ public class ShopZD1Test {
         listTest.add(10120);
         listTest.add(10122);
         listTest.add(10121);
+    }
 
+    @Test
+    public void testThisClassProduct(){
+        Product monitor = new Monitor(15480, 500, "LG");
+        Product mouse = new Mouse(13540, 10, "4Tech");
+        Product keybard = new Keyboard(10120, 25, "4Tech");
+
+        Assert.assertTrue(mouse instanceof Product);
+        Assert.assertTrue(keybard instanceof Product);
+        Assert.assertTrue(monitor instanceof Product);
+
+    }
+
+    @Test
+    public void testTypeMismatches(){
+        String strError=null;
+        Mouse mouseError;
+        try {
+            mouseError=new Mouse(Integer.parseInt(strError), 10, "4Tech");
+        } catch (NumberFormatException e) {
+            strError=e.toString();
+        }
+
+        Assert.assertNotNull(strError);
     }
 
 
     @Test
-    public void testGenerateCheckProduct() throws Exception {
+    public void testShopEquals(){
+        Assert.assertNotEquals(shopZD1Expected,shopZD1Actual);
+        shopZD1Expected=shopZD1Actual;
+        Assert.assertEquals(shopZD1Expected,shopZD1Actual);
+    }
+
+    @Test
+    public void testCheckPrice() {
 
         double priceExpected=1080;
         Check checkAktual=shopZD1Actual.generateCheckProduct(listTest);
-
-       Assert.assertNotEquals(shopZD1Expected,shopZD1Actual);
-       shopZD1Expected=shopZD1Actual;
-       Assert.assertEquals(shopZD1Expected,shopZD1Actual);
-       Assert.assertEquals(priceExpected,checkAktual.getSum(),0);
-
-
+        Assert.assertEquals(priceExpected,checkAktual.getSum(),0);
     }
 
+
+
     @Test
-    public void testRemoveProduct() throws Exception {
-        String stringExpected="ShopZD1{productsShop=[Product{id=13540, priceProduct=10.0, nameProduct='4Tech'}, " +
-                "Product{id=10120, priceProduct=25.0, nameProduct='4Tech'}," +
-                " Product{id=10121, priceProduct=30.0, nameProduct='4Tech-Pro'}, " +
-                "Product{id=10122, priceProduct=25.0, nameProduct='4Tech'}]}";
+    public void testRemoveProduct() {
+        String stringExpected;
+        String stringActual;
+        stringExpected=shopZD1Actual.toString();
         Product monitor = new Monitor(15480, 500, "LG");
         shopZD1Actual.removeProduct(monitor);
-        String stringActual=shopZD1Actual.toString();
-        Assert.assertEquals(stringExpected,stringActual);
-
+        stringActual=shopZD1Actual.toString();
+        Assert.assertNotEquals(stringExpected,stringActual);
     }
 
     @Test
@@ -72,7 +95,30 @@ public class ShopZD1Test {
         Assert.assertNull( shopZD1Actual.generateCheckProduct(null));
     }
 
+    @Test
+    public void testAddingAnExistingProduct(){
+        listTest.add(10);
+        String str=shopZD1Actual.toString();
+        Assert.assertNotEquals("id=10",str);
+    }
 
+    @Test
+    public void testAddListIDNullToTheShop(){
+        List<Integer> listTest=null;
+        Assert.assertNull(shopZD1Actual.generateCheckProduct(listTest));
+    }
 
+    @Test
+    public void testProductIdIsInTheShop(){
+        listTest.add(15480);
+        String str=shopZD1Actual.toString();
+        Assert.assertTrue(stringFoundOneTime("id=15480",str));
+
+    }
+
+    private boolean stringFoundOneTime(String searchStr, String actualString)
+    {
+       return (actualString.lastIndexOf(searchStr)==actualString.indexOf(searchStr));
+    }
 
 }

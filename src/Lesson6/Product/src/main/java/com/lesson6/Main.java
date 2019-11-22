@@ -48,6 +48,5 @@ public class Main {
         shopZD2.printCheck(shopZD2.generateCheckProduct(listTest2));
 
 
-
     }
 }

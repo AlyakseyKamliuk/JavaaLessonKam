@@ -9,9 +9,13 @@ public class Product {
     private String nameProduct;
 
     public Product(int id, double sumProduct, String nameProduct) {
-        this.id = id;
-        this.priceProduct = sumProduct;
-        this.nameProduct = nameProduct;
+        try {
+            this.id = id;
+            this.priceProduct = sumProduct;
+            this.nameProduct = nameProduct;
+        } catch (Exception e) {
+
+        }
     }
 
     public int getId() {

@@ -17,6 +17,7 @@ public class ShopZD2 implements Shop {
 
     public Check generateCheckProduct(List<Integer> requiredProductIds) {
         Check check = new Check();
+        if (requiredProductIds==null) return null;
         for (int i = 0; i < requiredProductIds.size(); i++) {
             copyingListToCheck(requiredProductIds.get(i), check);
         }
