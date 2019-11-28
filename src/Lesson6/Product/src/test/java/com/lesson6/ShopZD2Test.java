@@ -11,10 +11,15 @@ import java.util.List;
  * Created by Alex on 17.11.2019.
  */
 public class ShopZD2Test {
+    private   Check check=new Check();
+    private   ShopZD2 shopZD2=new ShopZD2();
     List<Integer> listTest2 = new ArrayList<Integer>();
     ShopZD2 shopZD2Actual = new ShopZD2();
     ShopZD2 shopZD2Expected = new ShopZD2();
-
+    private   Product monitor = new Monitor(15480, 500, "LG");
+    private   Product monitor2 = new Monitor(15480, 500, "LG");
+    private   Product monitor3 = new Monitor(15480, 500, "LG");
+    private   Product mouse = new Mouse(13540, 10, "4Tech");
     @Before
     public void init()  {
         Product monitor = new Monitor(15480, 500, "LG");
@@ -29,7 +34,6 @@ public class ShopZD2Test {
         shopZD2Actual.addProduct(monitor);
         shopZD2Actual.addProduct(monitor);
         shopZD2Actual.addProduct(mouse);
-
     }
     @Test
     public void testThisClassProduct(){
@@ -118,5 +122,63 @@ public class ShopZD2Test {
         Product monitor = new Monitor(15480, 500, "LG");
         Assert.assertEquals(monitor,shopZD2Actual.containsProduct(monitor));
     }
+
+    @Test
+    public void testAddingListWithNonexistentIDShopZD2(){
+        shopZD2.addProduct(monitor);
+        shopZD2.addProduct(mouse);
+        Check check;
+        listTest2.add(10);
+        check=shopZD2.generateCheckProduct(listTest2);
+        Assert.assertEquals(510,check.getSum(),0);
+    }
+
+    @Test
+    public void testAddListToCheckShopZD2(){
+        shopZD2.addProduct(monitor);
+        shopZD2.addProduct(mouse);
+        Check check;
+        check=shopZD2.generateCheckProduct(listTest2);
+        Assert.assertEquals(510,check.getSum(),0);
+    }
+
+    @Test
+    public void testAddShopZD2ListIDNullToTheCheck(){
+        List<Integer> listTest=null;
+        Check check;
+        check=shopZD2.generateCheckProduct(listTest);
+        Assert.assertEquals(0,check.getSum(),0);
+    }
+
+    @Test
+    public void testAddCheck(){
+        check.addProductInCheck(monitor);
+        Assert.assertEquals(500,check.getSum(),0);
+    }
+
+    @Test
+    public void testAddNullProductToTheCheck(){
+        Product monitor = null;
+        check.addProductInCheck(monitor);
+        Assert.assertEquals(0,check.getSum(),0);
+    }
+
+    @Test
+    public void testNumberOfProductsInTheCheck() {
+        check.addProductInCheck(monitor);
+        check.addProductInCheck(monitor2);
+        check.addProductInCheck(monitor3);
+        check.addProductInCheck(mouse);
+        Assert.assertEquals(3, check.numberOfProductsInTheCheck(monitor), 0);
+    }
+
+
+
+    @Test
+    public void testNumberOfNullProductsInTheCheck() {
+        Product monitor = null;
+        Assert.assertNull(check.numberOfProductsInTheCheck(monitor));
+    }
+
 
 }
