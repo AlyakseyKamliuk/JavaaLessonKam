@@ -5,14 +5,14 @@ package com.lesson6;
  */
 public class Product {
     private int id;
-    private double priceProduct;
-    private String nameProduct;
+    private double price;
+    private String name;
 
     public Product(int id, double sumProduct, String nameProduct) {
         try {
             this.id = id;
-            this.priceProduct = sumProduct;
-            this.nameProduct = nameProduct;
+            this.price = sumProduct;
+            this.name = nameProduct;
         } catch (Exception e) {
 
         }
@@ -27,30 +27,35 @@ public class Product {
     }
 
     public double getPriceProduct() {
-        return priceProduct;
+        return price;
     }
 
     public void setPriceProduct(double priceProduct) {
-        this.priceProduct = priceProduct;
+        this.price = priceProduct;
     }
 
     public String getNameProduct() {
-        return nameProduct;
+        return name;
     }
 
     public void setNameProduct(String nameProduct) {
-        this.nameProduct = nameProduct;
+        this.name = nameProduct;
     }
 
 
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", priceProduct=" + priceProduct +
-                ", nameProduct='" + nameProduct + '\'' +
-                '}';
+        return "\""+this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".")+1)+"\""+",{" +
+                "\"id=\":" + id +
+                ",\"price=\":" + price +
+                ",\"name=\":\"" + name + "\"}";
     }
 
+    public String toJSON(){
+        return "{\n\"type\":\""+this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".")+1)+"\""+"," +
+                "\n\"id=\":" + id +
+                ",\n\"price=\":" + price +
+                ",\n\"name=\":\"" + name + "\"\n}";
+    }
 
     public boolean equals(Object o) {
         if (o == null) return false;
