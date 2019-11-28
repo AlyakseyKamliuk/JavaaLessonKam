@@ -55,6 +55,13 @@ public class ShopZD2 implements Shop {
         System.out.println(check.toString());
     }
 
+
+    public void addProduct(List<Product> list){
+        for (int i = 0; i < list.size(); i++) {
+            addProduct(list.get(i));
+        }
+    }
+
     public void addProduct(Product product) {
         if (product == null) {
             return;

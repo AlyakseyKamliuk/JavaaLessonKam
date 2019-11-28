@@ -22,10 +22,12 @@ public class Main {
         products.add(keybard2);
         products.add(keybard3);
 
-        WorkFiles workFiles=new WorkFiles("test.json");
+        WriterToFile writerToFile=new WriterToFile();
+        ReaderFromAFile readerFromAFile=new ReaderFromAFile();
+
         ShopZD1 shopZD1 = new ShopZD1();
-        workFiles.writerToFile.fileWrite(products);
-        shopZD1=(ShopZD1)workFiles.readerFromAFile.addingProductsToAShop(shopZD1);
+        writerToFile.fileWrite(products,"test.csv");
+        shopZD1.addProduct(readerFromAFile.addingProductsToAShop(shopZD1,"test.csv"));
 
 
 
@@ -51,7 +53,7 @@ public class Main {
         listTest2.add(13540);
         listTest2.add(10120);
         ShopZD2 shopZD2 = new ShopZD2();
-        shopZD2=(ShopZD2)workFiles.readerFromAFile.addingProductsToAShop(shopZD2);
+        shopZD2.addProduct(readerFromAFile.addingProductsToAShop(shopZD2,"test.csv"));
         shopZD2.printCheck(shopZD2.generateCheckProduct(listTest2));
 
     }
