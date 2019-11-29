@@ -12,32 +12,30 @@ import java.util.regex.Pattern;
  * Created by Alex on 28.11.2019.
  */
 public class ReaderFromAFile {
-    private String filePath;
 
-    private BufferedReader reader=null;
 
-    public List<Product> addingProductsToAShop(Shop shop, String filePath) throws IOException {
+
+    public List<Product> addingProductsToAShop(Shop shop, String filePath) {
         String[] mas = null;
         List<Product> list = new ArrayList<Product>();
-        this.filePath=filePath;
 
-        try {
-           reader = new BufferedReader(new FileReader(filePath));
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+
             do {
-                if (fileExtension().contains("csv")) {
+                if (fileExtension(filePath).contains("csv")) {
                     mas = csvFormat(reader.readLine());
                     list.add(createNewProduct(mas));
                 }
-                if (fileExtension().contains("json")) {
-                    list = createListProducts();
+                if (fileExtension(filePath).contains("json")) {
+                    reader.close();
+                    list = createListProducts(filePath);
                 }
             } while (mas != null);
 
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            reader.close();
-            return list;
+          return list;
         }
     }
 
@@ -73,10 +71,10 @@ public class ReaderFromAFile {
         return product;
     }
 
-    private List<Product> createListProducts() {
+    private List<Product> createListProducts(String filePath) throws IOException {
         String string = "";
-        List<Product> list = new ArrayList<Product>();
-        try {
+        List<Product> list = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
             while (reader.ready()) {
                 if (string.contains("}")) {
                     list.add(createNewProduct(definingFieldsOfProduct(string)));
@@ -84,9 +82,6 @@ public class ReaderFromAFile {
                 }
                 string += reader.readLine() + "\n";
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return list;
     }
 
@@ -112,8 +107,10 @@ public class ReaderFromAFile {
         }
     }
 
-    private String fileExtension() {
+    private String fileExtension(String filePath) {
         String format = filePath.substring(filePath.lastIndexOf('.') + 1);
         return format;
     }
+
+
 }

@@ -7,11 +7,13 @@ import java.util.List;
 public class ShopZD1 implements Shop {
 
     private static List<Product> productsShop = new ArrayList<Product>();
+    private Check check = new Check();
 
-    Check check=new Check();
 
     public ShopZD1() {
     }
+
+
 
     public Check generateCheckProduct(List<Integer> requiredProductIds) {
 
@@ -54,12 +56,11 @@ public class ShopZD1 implements Shop {
         System.out.println(check.toString());
     }
 
-    public void addProduct(List<Product> products){
-        for (int i = 0; i < products.size(); i++) {
-            addProduct(products.get(i));
+    public void addProduct(List<Product> list){
+        for (int i = 0; i < list.size(); i++) {
+            addProduct(list.get(i));
         }
     }
-
     public void addProduct(Product product) {
         if (productsShop.contains(product)) return;
         productsShop.add(product);

@@ -7,4 +7,6 @@ public class Mouse extends Product {
     public Mouse(int id, double sumProduct, String nameProduct) {
         super(id, sumProduct, nameProduct);
     }
+
+
 }

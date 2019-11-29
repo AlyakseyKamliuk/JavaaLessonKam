@@ -9,48 +9,41 @@ import java.util.List;
  */
 public class WriterToFile {
 
-
+    private List<String> products = new ArrayList<>();
     private BufferedWriter writer;
-    private List<String> products = new ArrayList<String>();
+    private BufferedReader reader;
     private String filePath = "test.json";
 
-
     public void fileWrite(Product product, String filePath) throws IOException {
-        try {
-            writer = new BufferedWriter(new FileWriter(filePath, true));
-            this.filePath=filePath;
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+             this.writer=writer;
+             this.filePath=filePath;
             if (fileExtension().contains("json")) {
                 preparingAStringForWritingToJSON(product, 0, 1);
             }
             if (fileExtension().contains("csv")) {
                 preparingAStringForWritingToCSV(product);
             }
-
         } catch (Exception e) {
-                e.printStackTrace();
-        } finally {
-            writer.close();
+            e.printStackTrace();
         }
         fileWrite();
     }
 
     public void fileWrite(List<Product> product, String filePath) throws IOException {
-        try {
-            writer = new BufferedWriter(new FileWriter(filePath, true));
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))){
+            this.writer=writer;
             this.filePath=filePath;
             if (fileExtension().contains("json"))
                 for (int i = 0; i < product.size(); i++) {
                     preparingAStringForWritingToJSON(product.get(i), i, product.size());
                 }
-
             if (fileExtension().contains("csv"))
                 for (int i = 0; i < product.size(); i++) {
                     preparingAStringForWritingToCSV(product.get(i));
                 }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            writer.close();
         }
         fileWrite();
     }
@@ -70,11 +63,10 @@ public class WriterToFile {
             writer.append(products.get(i));
         }
         writer.close();
-        products = new ArrayList<String>();
+        products = new ArrayList<>();
     }
 
     private void preparingAStringForWritingToJSON(Product product, int indexElement, int listProductSize) throws IOException {
-
         if ((products.size() == 0) && (overwriteExistingProducts().length() == 0)) {
             products.add("[\n");
         }
@@ -92,13 +84,11 @@ public class WriterToFile {
         products.add(nameClass);
     }
 
-    private String overwriteExistingProducts() throws IOException {
+    private String overwriteExistingProducts() {
         String str = null;
         String rez = "";
-        BufferedReader reader=null;
-        try {
-            reader = new BufferedReader(new FileReader(filePath));
-            do {
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+          do {
                 str = reader.readLine();
                 if (str != null) {
                     rez += str + "\n";
@@ -109,8 +99,6 @@ public class WriterToFile {
             } while (str != null);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            reader.close();
         }
         return rez;
     }
@@ -119,4 +107,5 @@ public class WriterToFile {
         String format = filePath.substring(filePath.lastIndexOf('.') + 1);
         return format;
     }
+
 }

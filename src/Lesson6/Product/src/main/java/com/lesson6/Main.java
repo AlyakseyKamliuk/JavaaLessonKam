@@ -17,21 +17,21 @@ public class Main {
         Product keybard2 = new Keyboard(10121, 30, "4Tech-Pro");
         Product keybard3 = new Keyboard(10122, 25, "4Tech");
 
-        List<Product> products=new ArrayList<Product>();
+        List<Product> products=new ArrayList<>();
         products.add(monitor);
         products.add(keybard2);
         products.add(keybard3);
 
-        WriterToFile writerToFile=new WriterToFile();
-        ReaderFromAFile readerFromAFile=new ReaderFromAFile();
 
         ShopZD1 shopZD1 = new ShopZD1();
-        writerToFile.fileWrite(products,"test.csv");
-        shopZD1.addProduct(readerFromAFile.addingProductsToAShop(shopZD1,"test.csv"));
+        WriterToFile writerToFile=new WriterToFile();
+        ReaderFromAFile readerFromAFile=new ReaderFromAFile();
+        shopZD1.addProduct(readerFromAFile.addingProductsToAShop(shopZD1, "test.json"));
+
+        writerToFile.fileWrite(products,"test.json");
 
 
-
-        List<Integer> listTest = new ArrayList<Integer>();
+        List<Integer> listTest = new ArrayList<>();
         listTest.add(15480);
         listTest.add(15480);
         listTest.add(15480);
@@ -45,7 +45,7 @@ public class Main {
         shopZD1.printCheck(shopZD1.generateCheckProduct(listTest));
 
 
-        List<Integer> listTest2 = new ArrayList<Integer>();
+        List<Integer> listTest2 = new ArrayList<>();
         listTest2.add(15480);
         listTest2.add(15480);
         listTest2.add(15480);
@@ -53,7 +53,7 @@ public class Main {
         listTest2.add(13540);
         listTest2.add(10120);
         ShopZD2 shopZD2 = new ShopZD2();
-        shopZD2.addProduct(readerFromAFile.addingProductsToAShop(shopZD2,"test.csv"));
+        shopZD2.addProduct(readerFromAFile.addingProductsToAShop(shopZD2,"test.json"));
         shopZD2.printCheck(shopZD2.generateCheckProduct(listTest2));
 
     }
