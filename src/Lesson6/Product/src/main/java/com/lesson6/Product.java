@@ -1,9 +1,10 @@
 package com.lesson6;
 
+
 /**
  * Created by Alex on 11.11.2019.
  */
-public class Product {
+public class Product implements Comparable{
     private int id;
     private double price;
     private String name;
@@ -80,4 +81,8 @@ public class Product {
         return result;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return Integer.compare(id, ((Product)o).getId());
+    }
 }

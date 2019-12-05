@@ -1,5 +1,7 @@
 package com.lesson6;
 
+import com.lesson6.Format.JSONFormatWriter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-
-
-       Product monitor = new Monitor(15480, 500, "LG");
+     /*  Product monitor = new Monitor(15480, 500, "LG");
         Product monitor2 = new Monitor(15480, 500, "LG");
         Product mouse = new Mouse(13540, 10, "4Tech");
         Product keybard = new Keyboard(10120, 25, "4Tech");
@@ -54,7 +54,26 @@ public class Main {
         listTest2.add(10120);
         ShopZD2 shopZD2 = new ShopZD2();
         shopZD2.addProduct(readerFromAFile.addingProductsToAShop(shopZD2,"test.json"));
-        shopZD2.printCheck(shopZD2.generateCheckProduct(listTest2));
+        shopZD2.printCheck(shopZD2.generateCheckProduct(listTest2)); */
+
+     /*  ProductConsoleReader productConsoleReader=new ProductConsoleReader();
+        productConsoleReader.consoleReader();
+        System.out.println(productConsoleReader.toString());*/
+
+  /*      ShopFormater shopFormater = new ShopFormater();
+        ShopZD1 shopZD1 = new ShopZD1();
+        shopZD1.addProduct(shopFormater.createListProducts("test.csv"));
+        System.out.println(shopZD1.toString());
+        ShopZD2 shopZD2=new ShopZD2();
+        shopZD2.addProduct(shopFormater.createListProducts("test.json"));
+        System.out.println(shopZD2.toString());*/
+
+ // writerToFile.testingGet(new Product(1,2,""));
+    Product keybard2 = new Keyboard(10121, 30, "4Tech-Pro");
+    JSONFormatWriter json=new JSONFormatWriter();
+    json.fileWriteTo(keybard2,"test.json");
+
+
 
     }
 }

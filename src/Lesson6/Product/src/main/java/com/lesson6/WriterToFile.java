@@ -1,6 +1,8 @@
 package com.lesson6;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +11,8 @@ import java.util.List;
  */
 public class WriterToFile {
 
-    private List<String> products = new ArrayList<>();
+     List<String> products = new ArrayList<>();
     private BufferedWriter writer;
-    private BufferedReader reader;
     private String filePath = "test.json";
 
     public void fileWrite(Product product, String filePath) throws IOException {
@@ -78,9 +79,28 @@ public class WriterToFile {
         }
     }
 
-    public void preparingAStringForWritingToCSV(Product product) throws IOException {
-        String nameClass = product.getClass().getName().substring(product.getClass().getName().lastIndexOf(".") + 1);
-        nameClass = nameClass + ";" + product.getId() + ";" + product.getPriceProduct() + ";" + product.getNameProduct() + "\n";
+    public void testingGet(Object o){
+
+        for (Method method:o.getClass().getDeclaredMethods()) {
+            if (method.getName().contains("get")) {
+                try {
+                    System.out.println(method.invoke(o));
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void preparingAStringForWritingToCSV(Object o) throws Exception {
+        String nameClass = o.getClass().getName().substring(o.getClass().getName().lastIndexOf(".") + 1);
+        for (Method method:o.getClass().getDeclaredMethods()) {
+            if (method.getName().contains("get")) {
+                nameClass = nameClass + ";" + method.invoke(o);
+            }
+        }
         products.add(nameClass);
     }
 
