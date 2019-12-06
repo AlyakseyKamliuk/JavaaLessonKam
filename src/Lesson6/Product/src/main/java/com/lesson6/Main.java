@@ -1,10 +1,8 @@
 package com.lesson6;
 
-import com.lesson6.Format.JSONFormatWriter;
+import com.lesson6.Format.JSONFormatterWriter;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -70,7 +68,7 @@ public class Main {
 
  // writerToFile.testingGet(new Product(1,2,""));
     Product keybard2 = new Keyboard(10121, 30, "4Tech-Pro");
-    JSONFormatWriter json=new JSONFormatWriter();
+    JSONFormatterWriter json=new JSONFormatterWriter();
     json.fileWriteTo(keybard2,"test.json");
 
 

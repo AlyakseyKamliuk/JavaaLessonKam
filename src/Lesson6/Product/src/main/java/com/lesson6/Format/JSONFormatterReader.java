@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class JSONFileReader implements FormatterReader {
+public class JSONFormatterReader implements FormatterReader {
 
     @Override
     public ArrayList formaterTo(String filePath) {
@@ -43,10 +43,7 @@ public class JSONFileReader implements FormatterReader {
 
     private void isNumberOfFieldsInTheClassDoesNotMatch(Integer numberOfFields) {
         if (numberOfFields >= 4) {
-            Exception e = new IndexOutOfBoundsException("Данные в считываемом файле не соотвестувуют формату класса Product");
-            e.printStackTrace();
-            throw new IndexOutOfBoundsException();
-
+              throw new IndexOutOfBoundsException("Данные в считываемом файле не соотвестувуют формату класса Product");
         }
     }
 

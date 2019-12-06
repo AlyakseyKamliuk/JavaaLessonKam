@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVFormatWriter implements FormatterWriter {
+public class CSVFormatterWriter implements FormatterWriter {
 
     private List<String> products = new ArrayList<>();
     private String filePath;

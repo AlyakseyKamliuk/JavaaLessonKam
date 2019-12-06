@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Alex on 05.12.2019.
  */
-public class JSONFormatWriter {
+public class JSONFormatterWriter {
 
     List<String> products = new ArrayList<>();
     String filePath = "test.json";

@@ -1,8 +1,8 @@
 package com.lesson6;
 
 
-import com.lesson6.Format.CSVFileReader;
-import com.lesson6.Format.JSONFileReader;
+import com.lesson6.Format.CSVFormatterReader;
+import com.lesson6.Format.JSONFormatterReader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +18,11 @@ public class ShopFormater {
         
                 if (fileExtension(filePath).contains("csv")) {
 
-                    CSVFileReader csv=new CSVFileReader();
+                    CSVFormatterReader csv=new CSVFormatterReader();
                     createListProduct(csv.formaterTo(filePath));
                 }
                 if (fileExtension(filePath).contains("json")) {
-                    JSONFileReader json=new JSONFileReader();
+                    JSONFormatterReader json=new JSONFormatterReader();
                     createListProduct(json.formaterTo(filePath));
                 }
           return listProduct;

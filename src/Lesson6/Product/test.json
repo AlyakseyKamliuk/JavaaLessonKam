@@ -18,5 +18,11 @@
 "Consumption":6.0,
 "CarBrand":"Audi",
 "CarModel":"A6"
+},
+{
+"Type":"d",
+"Id":10121,
+"PriceProduct":30.0,
+"NameProduct":"4Tech-Pro"
 }
 ]

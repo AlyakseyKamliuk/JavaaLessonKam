@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CSVFileReader implements FormatterReader {
+public class CSVFormatterReader implements FormatterReader {
 
     @Override
     public ArrayList formaterTo(String filePath) {
