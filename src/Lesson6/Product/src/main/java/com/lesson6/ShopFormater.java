@@ -39,12 +39,12 @@ public class ShopFormater {
     private Product createNewProduct(String[] mas) {
         Product product = null;
         if (mas == null) return product;
-        if ("Mouse".equals(mas[3])) {
-            product = new Mouse(Integer.parseInt(mas[0]), Double.parseDouble(mas[1]), mas[2]);
-        } else if ("Monitor".equals(mas[3])) {
-            product = new Monitor(Integer.parseInt(mas[0]), Double.parseDouble(mas[1]), mas[2]);
-        } else if ("Keyboard".equals(mas[3])) {
-            product = new Keyboard(Integer.parseInt(mas[0]), Double.parseDouble(mas[1]), mas[2]);
+        if ("Mouse".equals(mas[0])) {
+            product = new Mouse(Integer.parseInt(mas[1]), Double.parseDouble(mas[2]), mas[3]);
+        } else if ("Monitor".equals(mas[0])) {
+            product = new Monitor(Integer.parseInt(mas[1]), Double.parseDouble(mas[2]), mas[3]);
+        } else if ("Keyboard".equals(mas[0])) {
+            product = new Keyboard(Integer.parseInt(mas[1]), Double.parseDouble(mas[2]), mas[3]);
         }
         return product;
     }

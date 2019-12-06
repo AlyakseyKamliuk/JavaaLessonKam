@@ -11,26 +11,24 @@ import java.util.List;
 
 public class CSVFormatterWriter implements FormatterWriter {
 
-    private List<String> products = new ArrayList<>();
-    private String filePath;
+
+
 
     public void fileWriteTo(Object o, String filePath) {
-        String nameClass = "";
-        this.filePath=filePath;
+        String nameClass = o.getClass().getName().substring(o.getClass().getName().lastIndexOf(".") + 1);
+
         for (Method method : o.getClass().getMethods()) {
-            if (method.getName().contains("get")) {
+            if ((method.getName().contains("get"))&&(!method.getName().contains("getClass"))) {
 
                 try {
                     if (nameClass.length()!=0) nameClass+=";";
                     nameClass = nameClass + method.invoke(o);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
+                } catch (IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
             }
         }
-        fileWrite(nameClass);
+        fileWrite(nameClass, filePath);
     }
 
 
@@ -40,7 +38,7 @@ public class CSVFormatterWriter implements FormatterWriter {
         }
     }
 
-    private void fileWrite(String string) {
+    private void fileWrite(String string, String filePath) {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true))){
             if (string != null) {

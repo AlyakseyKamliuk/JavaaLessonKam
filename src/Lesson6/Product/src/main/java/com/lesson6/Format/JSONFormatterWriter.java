@@ -44,7 +44,7 @@ public class JSONFormatterWriter {
         }
     }
     private void toJson(Object o) {
-        products.add("{\n\"Type\":\"" + o.getClass().getName().substring(this.getClass().getName().lastIndexOf(".") + 1) + "\"" + ",\n");
+        products.add("{\n\"Type\":\"" + o.getClass().getName().substring(o.getClass().getName().lastIndexOf(".") + 1) + "\"" + ",\n");
         for (Method method : o.getClass().getMethods()) {
             if ((method.getName().contains("get")) && (!method.getName().contains("getClass"))) {
                 try {
